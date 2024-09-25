@@ -22,9 +22,9 @@ app.listen(port, () => {
         console.log('--------------------------------------------');
         async function conectarYConsultar() {
           try {
-            await sql.connect(dbConfig);
-        
-            const result = await sql.query`T DISTINCT 
+            // res.send(sql.connect(dbConfig));
+            await sql.connect(dbConfig)
+            const result = await sql.query`SELECT 
                                 Pabellon, Cama, Ingreso, Tip_Doc, Documento,Folio, Paciente, Fec_Ingreso, Origen_Atencion, Tipo_Concepto, Cups, Nombre_Procedimiento, Cantidad, 
                                  Fch_Orden,    Observaciones
         FROM         (SELECT DISTINCT tf.TFcCodPab AS Pabellon_num,
@@ -37,7 +37,7 @@ app.listen(port, () => {
                                                                 (SELECT   LTRIM(RTRIM(tp.TiPrDes)) AS Expr1
                                                                    FROM         dbo.TIPPROC AS tp INNER JOIN
                                                                                             dbo.MAEPRO AS MPR ON MPR.TpPrCd = tp.TiPrCod
-                                                                   WHERE     (ma.PRCODI = MPR.PRCODI)) AS Tipo_Concepto, h51.HCPrcCod AS Cups, LTRIM(RTRIM(ma.PrNomb)) AS Nombre_Procedimiento, H5.HisCPCan AS Cantidad, 
+                                                                   WHERE     (ma.PRCODI = MPR.PRCODI)) AS Tipo_Concepto, ltrim(rtrim(h51.HCPrcCod)) AS Cups, LTRIM(RTRIM(ma.PrNomb)) AS Nombre_Procedimiento, H5.HisCPCan AS Cantidad, 
                                                             h51.HCFcHrOrd AS Fch_Orden, 
                                                             LTRIM(RTRIM(H5.HisCpObs)) AS Observaciones
                                    FROM         dbo.MAEPAB1 AS b1 LEFT OUTER JOIN

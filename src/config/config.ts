@@ -54,11 +54,6 @@ export default dbConfig;
 
 
 
-
-
-
-
-
 // import { Sequelize } from 'sequelize';
 // const sequelize = new Sequelize({
 //   database: process.env.DB_NAME,
