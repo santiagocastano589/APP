@@ -95,6 +95,7 @@ app.listen(port, () => {
                                   ) AS table1`;
         
             console.dir(result);
+            res.status(200).json(result)
         
           } catch (err) {
             console.error('Error al intentar conectarse:', err);
