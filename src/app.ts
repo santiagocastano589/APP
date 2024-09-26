@@ -15,7 +15,7 @@ app.listen(port, () => {
   async function testConnection() {
     
     try {
-      app.get('/camas', (req: Request, res: Response) => {
+      app.get('/', (req: Request, res: Response) => {
         console.log('--------------------------------------------');
         async function conectarYConsultar() {
           try {
