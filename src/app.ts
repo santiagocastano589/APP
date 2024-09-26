@@ -2,20 +2,25 @@ import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
 
 import sql from 'mssql';
-
+import cors from "cors";
 import dbConfig from './config/config';
 dotenv.config();
 
 const app: Application = express();
-const port: string | number = process.env.PORT || 3001;
+const port: string | number = process.env.PORT || 3000;
 
+app.use(cors({
+  origin: 'http://localhost:5173'
+}))
 
 
 app.listen(port, () => {
   async function testConnection() {
     
     try {
-      app.get('/', (req: Request, res: Response) => {
+      app.get('/',cors({
+        origin: 'http://localhost:5173'
+      }), (req: Request, res: Response) => {
         console.log('--------------------------------------------');
         async function conectarYConsultar() {
           try {
