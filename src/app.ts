@@ -1,6 +1,5 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import dataRoute from "./routes/dataRoute";
 
 import sql from 'mssql';
 
@@ -9,7 +8,6 @@ dotenv.config();
 
 const app: Application = express();
 const port: string | number = process.env.PORT || 3001;
-app.use('/', dataRoute);
 
 
 
@@ -17,8 +15,7 @@ app.listen(port, () => {
   async function testConnection() {
     
     try {
-      app.get('/', (req: Request, res: Response) => {
-        // res.send('CLINICA CENTRAL DEL QUINDIO');
+      app.get('/camas', (req: Request, res: Response) => {
         console.log('--------------------------------------------');
         async function conectarYConsultar() {
           try {
@@ -115,11 +112,3 @@ app.listen(port, () => {
 
   console.log(`Server running on port ${port}`);
 });
-
-// AppDataSource.initialize()
-//   .then(() => {
-//     console.log("Connected to the database!");
-//   })
-//   .catch((error) => {
-//     console.error("Failed to connect to the database:", error);
-//   });
